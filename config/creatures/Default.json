@@ -1,0 +1,620 @@
+[
+  {
+    "name": "Boar",
+    "minExp": 25,
+    "maxExp": 50,
+    "level": 5
+  },
+  {
+    "name": "Deer",
+    "minExp": 25,
+    "maxExp": 50,
+    "level": 5
+  },
+  {
+    "name": "Neck",
+    "minExp": 25,
+    "maxExp": 50,
+    "level": 5
+  },
+  {
+    "name": "Greyling",
+    "minExp": 25,
+    "maxExp": 50,
+    "level": 7
+  },
+  {
+    "name": "Skeleton_Meadows",
+    "minExp": 50,
+    "maxExp": 75,
+    "level": 7
+  },
+  {
+    "name": "Skeleton_Meadows_noarcher",
+    "minExp": 50,
+    "maxExp": 75,
+    "level": 7
+  },
+  {
+    "name": "Greydwarf",
+    "minExp": 75,
+    "maxExp": 100,
+    "level": 15
+  },
+  {
+    "name": "Greydwarf_Elite",
+    "minExp": 100,
+    "maxExp": 150,
+    "level": 20
+  },
+  {
+    "name": "Greydwarf_Shaman",
+    "minExp": 80,
+    "maxExp": 120,
+    "level": 17
+  },
+  {
+    "name": "Ghost",
+    "minExp": 100,
+    "maxExp": 125,
+    "level": 18
+  },
+  {
+    "name": "Skeleton",
+    "minExp": 75,
+    "maxExp": 100,
+    "level": 15
+  },
+  {
+    "name": "Skeleton_NoArcher",
+    "minExp": 75,
+    "maxExp": 100,
+    "level": 15
+  },
+  {
+    "name": "Skeleton_Poison",
+    "minExp": 100,
+    "maxExp": 125,
+    "level": 17
+  },
+  {
+    "name": "Troll",
+    "minExp": 600,
+    "maxExp": 800,
+    "level": 22
+  },
+  {
+    "name": "Bjorn",
+    "minExp": 800,
+    "maxExp": 1000,
+    "level": 23
+  },
+  {
+    "name": "Bjorn_sleeping",
+    "minExp": 800,
+    "maxExp": 1000,
+    "level": 23
+  },
+  {
+    "name": "TentaRoot",
+    "minExp": 5,
+    "maxExp": 5,
+    "level": 0
+  },
+  {
+    "name": "Blob",
+    "minExp": 150,
+    "maxExp": 200,
+    "level": 28
+  },
+  {
+    "name": "Leech",
+    "minExp": 150,
+    "maxExp": 200,
+    "level": 28
+  },
+  {
+    "name": "Wraith",
+    "minExp": 500,
+    "maxExp": 600,
+    "level": 31
+  },
+  {
+    "name": "Skeleton_Swamps",
+    "minExp": 200,
+    "maxExp": 225,
+    "level": 29
+  },
+  {
+    "name": "Skeleton_Swamps_noarcher",
+    "minExp": 200,
+    "maxExp": 225,
+    "level": 29
+  },
+  {
+    "name": "Draugr",
+    "minExp": 200,
+    "maxExp": 225,
+    "level": 29
+  },
+  {
+    "name": "Draugr_Ranged",
+    "minExp": 200,
+    "maxExp": 225,
+    "level": 29
+  },
+  {
+    "name": "Surtling",
+    "minExp": 100,
+    "maxExp": 130,
+    "level": 17
+  },
+  {
+    "name": "Draugr_Elite",
+    "minExp": 300,
+    "maxExp": 500,
+    "level": 31
+  },
+  {
+    "name": "BlobElite",
+    "minExp": 200,
+    "maxExp": 225,
+    "level": 29
+  },
+  {
+    "name": "Writhan",
+    "minExp": 400,
+    "maxExp": 500,
+    "level": 31
+  },
+  {
+    "name": "Abomination",
+    "minExp": 800,
+    "maxExp": 1000,
+    "level": 32
+  },
+  {
+    "name": "Bat",
+    "minExp": 140,
+    "maxExp": 180,
+    "level": 35
+  },
+  {
+    "name": "Skeleton_Mountains",
+    "minExp": 300,
+    "maxExp": 400,
+    "level": 39
+  },
+  {
+    "name": "Skeleton_Mountains_noarcher",
+    "minExp": 300,
+    "maxExp": 400,
+    "level": 39
+  },
+  {
+    "name": "Wolf",
+    "minExp": 300,
+    "maxExp": 400,
+    "level": 39
+  },
+  {
+    "name": "BlobFrost",
+    "minExp": 300,
+    "maxExp": 400,
+    "level": 39
+  },
+  {
+    "name": "Fenring",
+    "minExp": 500,
+    "maxExp": 600,
+    "level": 42
+  },
+  {
+    "name": "Fenring_Cultist",
+    "minExp": 600,
+    "maxExp": 700,
+    "level": 41
+  },
+  {
+    "name": "Ulv",
+    "minExp": 300,
+    "maxExp": 400,
+    "level": 40
+  },
+  {
+    "name": "Hatchling",
+    "minExp": 300,
+    "maxExp": 400,
+    "level": 39
+  },
+  {
+    "name": "StoneGolem",
+    "minExp": 1000,
+    "maxExp": 1200,
+    "level": 42
+  },
+  {
+    "name": "Serpent",
+    "minExp": 400,
+    "maxExp": 500,
+    "level": 35
+  },
+  {
+    "name": "BlobTar",
+    "minExp": 350,
+    "maxExp": 450,
+    "level": 49
+  },
+  {
+    "name": "Goblin",
+    "minExp": 350,
+    "maxExp": 450,
+    "level": 49
+  },
+  {
+    "name": "GoblinArcher",
+    "minExp": 380,
+    "maxExp": 480,
+    "level": 49
+  },
+  {
+    "name": "Deathsquito",
+    "minExp": 200,
+    "maxExp": 300,
+    "level": 49
+  },
+  {
+    "name": "Lox",
+    "minExp": 1200,
+    "maxExp": 1400,
+    "level": 52
+  },
+  {
+    "name": "GoblinBrute",
+    "minExp": 1200,
+    "maxExp": 1400,
+    "level": 52
+  },
+  {
+    "name": "Unbjorn",
+    "minExp": 1400,
+    "maxExp": 1600,
+    "level": 53
+  },
+  {
+    "name": "GoblinShaman",
+    "minExp": 300,
+    "maxExp": 400,
+    "level": 51
+  },
+  {
+    "name": "Seeker",
+    "minExp": 700,
+    "maxExp": 900,
+    "level": 61
+  },
+  {
+    "name": "SeekerBrood",
+    "minExp": 50,
+    "maxExp": 50,
+    "level": 60
+  },
+  {
+    "name": "SeekerBrute",
+    "minExp": 1600,
+    "maxExp": 1800,
+    "level": 62
+  },
+  {
+    "name": "Gjall",
+    "minExp": 1600,
+    "maxExp": 1800,
+    "level": 66
+  },
+  {
+    "name": "Tick",
+    "minExp": 180,
+    "maxExp": 240,
+    "level": 60
+  },
+  {
+    "name": "Hare",
+    "minExp": 180,
+    "maxExp": 240,
+    "level": 60
+  },
+  {
+    "name": "Hen",
+    "minExp": 10,
+    "maxExp": 10,
+    "level": 6
+  },
+  {
+    "name": "Chick",
+    "minExp": 5,
+    "maxExp": 5,
+    "level": 3
+  },
+  {
+    "name": "Dverger",
+    "minExp": 700,
+    "maxExp": 900,
+    "level": 60
+  },
+  {
+    "name": "DvergerMage",
+    "minExp": 700,
+    "maxExp": 900,
+    "level": 60
+  },
+  {
+    "name": "Charred_Archer",
+    "minExp": 1100,
+    "maxExp": 1500,
+    "level": 71
+  },
+  {
+    "name": "Charred_Mage",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 71
+  },
+  {
+    "name": "Charred_Melee",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 71
+  },
+  {
+    "name": "Charred_Twitcher",
+    "minExp": 500,
+    "maxExp": 500,
+    "level": 71
+  },
+  {
+    "name": "Charred_Twitcher_Summoned",
+    "minExp": 200,
+    "maxExp": 200,
+    "level": 71
+  },
+  {
+    "name": "Charred_Archer_Fader",
+    "minExp": 500,
+    "maxExp": 500,
+    "level": 71
+  },
+  {
+    "name": "Charred_Melee_Fader",
+    "minExp": 500,
+    "maxExp": 500,
+    "level": 71
+  },
+  {
+    "name": "Charred_Melee_Dyrnwyn",
+    "minExp": 2500,
+    "maxExp": 3500,
+    "level": 0
+  },
+  {
+    "name": "BlobLava",
+    "minExp": 1100,
+    "maxExp": 1500,
+    "level": 71
+  },
+  {
+    "name": "Volture",
+    "minExp": 1100,
+    "maxExp": 1500,
+    "level": 71
+  },
+  {
+    "name": "Asksvin",
+    "minExp": 2000,
+    "maxExp": 3000,
+    "level": 71
+  },
+  {
+    "name": "FallenValkyrie",
+    "minExp": 2500,
+    "maxExp": 3500,
+    "level": 72
+  },
+  {
+    "name": "Morgen_NonSleeping",
+    "minExp": 2500,
+    "maxExp": 3500,
+    "level": 72
+  },
+  {
+    "name": "Morgen",
+    "minExp": 2500,
+    "maxExp": 3500,
+    "level": 72
+  },
+  {
+    "name": "BonemawSerpent",
+    "minExp": 2000,
+    "maxExp": 3000,
+    "level": 72
+  },
+  {
+    "name": "Seal",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 81
+  },
+  {
+    "name": "ShadowPerson",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 81
+  },
+  {
+    "name": "Greydwarf_Frozen",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 81
+  },
+  {
+    "name": "Greydwarf_Shaman_Frozen",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 81
+  },
+  {
+    "name": "Skeleton_DeepNorth",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 81
+  },
+  {
+    "name": "Moose",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 81
+  },
+  {
+    "name": "Elaking",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 81
+  },
+  {
+    "name": "ElakingLantern",
+    "minExp": 1600,
+    "maxExp": 2000,
+    "level": 81
+  },
+  {
+    "name": "JotunWarrior",
+    "minExp": 2000,
+    "maxExp": 3000,
+    "level": 84
+  },
+  {
+    "name": "JotunWitch",
+    "minExp": 3000,
+    "maxExp": 4000,
+    "level": 84
+  },
+  {
+    "name": "Spawner_TrollFrost",
+    "minExp": 3000,
+    "maxExp": 4000,
+    "level": 84
+  },
+  {
+    "name": "Barka",
+    "minExp": 3000,
+    "maxExp": 4000,
+    "level": 84
+  },
+  {
+    "name": "ElakingMole",
+    "minExp": 1600,
+    "maxExp": 3000,
+    "level": 81
+  },
+  {
+    "name": "Skeleton_Hildir",
+    "minExp": 600,
+    "maxExp": 800,
+    "level": 0
+  },
+  {
+    "name": "Skeleton_Hildir_nochest",
+    "minExp": 600,
+    "maxExp": 800,
+    "level": 0
+  },
+  {
+    "name": "Fenring_Cultist_Hildir",
+    "minExp": 1000,
+    "maxExp": 1200,
+    "level": 0
+  },
+  {
+    "name": "Fenring_Cultist_Hildir_nochest",
+    "minExp": 1000,
+    "maxExp": 1200,
+    "level": 0
+  },
+  {
+    "name": "GoblinBruteBros",
+    "minExp": 2000,
+    "maxExp": 2500,
+    "level": 0
+  },
+  {
+    "name": "GoblinShaman_Hildir",
+    "minExp": 1300,
+    "maxExp": 2000,
+    "level": 0
+  },
+  {
+    "name": "GoblinBruteBros_nochest",
+    "minExp": 2000,
+    "maxExp": 2500,
+    "level": 0
+  },
+  {
+    "name": "GoblinShaman_Hildir_nochest",
+    "minExp": 1300,
+    "maxExp": 2000,
+    "level": 0
+  },
+  {
+    "name": "Eikthyr",
+    "minExp": 500,
+    "maxExp": 1500,
+    "level": 10
+  },
+  {
+    "name": "gd_king",
+    "minExp": 1500,
+    "maxExp": 2500,
+    "level": 25
+  },
+  {
+    "name": "Bonemass",
+    "minExp": 2500,
+    "maxExp": 3500,
+    "level": 35
+  },
+  {
+    "name": "Dragon",
+    "minExp": 3500,
+    "maxExp": 4500,
+    "level": 45
+  },
+  {
+    "name": "GoblinKing",
+    "minExp": 4500,
+    "maxExp": 5500,
+    "level": 55
+  },
+  {
+    "name": "SeekerQueen",
+    "minExp": 5500,
+    "maxExp": 6500,
+    "level": 65
+  },
+  {
+    "name": "Fader",
+    "minExp": 6500,
+    "maxExp": 7500,
+    "level": 75
+  },
+  {
+    "name": "FrozenKing",
+    "minExp": 7500,
+    "maxExp": 8500,
+    "level": 85
+  },
+  {
+    "name": "FrozenKing_p3",
+    "minExp": 7500,
+    "maxExp": 8500,
+    "level": 85
+  }
+]

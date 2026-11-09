@@ -20,9 +20,8 @@ internal static class CreatureLevel
         if (zdo == null || zdo.GetInt(LevelKey, 0) > 0) return;
         var definition = Plugin.Creatures.Find(creature);
         if (definition == null) return;
-        var low = Mathf.Max(1, definition.MinLevel);
-        var high = Mathf.Max(low, definition.MaxLevel);
-        var level = Random.Range(low, high + 1);
+        // Same behavior as EpicMMO: JSON is the fixed base level; only vanilla stars modify it.
+        var level = Mathf.Max(0, definition.Level);
         if (Plugin.StarsAddLevels.Value) level += creature.GetLevel() - 1;
         zdo.Set(LevelKey, level);
     }

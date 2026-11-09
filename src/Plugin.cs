@@ -4,6 +4,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using ServerSync;
 using UnityEngine;
 
 namespace PoVMonsterLevels;
@@ -25,6 +26,13 @@ public sealed class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> StarsAddLevels = null!;
     internal static ConfigEntry<bool> ShowOverheadLevel = null!;
     internal static ConfigEntry<string> LevelText = null!;
+    internal static readonly ConfigSync ConfigSync = new(PluginGuid)
+    {
+        DisplayName = PluginName,
+        CurrentVersion = PluginVersion,
+        MinimumRequiredVersion = PluginVersion
+    };
+    internal static CustomSyncedValue<string> CreatureTable = null!;
 
     private FileSystemWatcher? _watcher;
 
@@ -32,20 +40,29 @@ public sealed class Plugin : BaseUnityPlugin
     {
         Instance = this;
         Log = Logger;
-        LevelGap = Config.Bind("Gap", "Level gap", 10, "O jogador causa dano total até esta diferença de nível.");
-        DamageMode = Config.Bind("Gap", "Damage mode", PoVMonsterLevels.DamageMode.Block, "Block: zera dano. Scale: reduz proporcionalmente.");
-        MinimumDamage = Config.Bind("Gap", "Minimum scaled damage", 0.10f, new ConfigDescription("Piso no modo Scale.", new AcceptableValueRange<float>(0f, 1f)));
-        DamageOffset = Config.Bind("Gap", "Damage offset", 0, "Equivale ao Low_damage_config do EpicMMO.");
-        StarsAddLevels = Config.Bind("Creatures", "Stars add levels", true, "Cada estrela vanilla soma um nível.");
-        ShowOverheadLevel = Config.Bind("HUD", "Show level above creature", true, "Mostra o nível sobre a cabeça da criatura.");
-        LevelText = Config.Bind("HUD", "Level text", "[Nv. @]", "@ será substituído pelo nível.");
+        var lockConfig = SyncConfig("General", "Force server config", true, "Impede clientes de alterar regras do servidor.");
+        LevelGap = SyncConfig("Gap", "Level gap", 10, "O jogador causa dano total até esta diferença de nível.");
+        DamageMode = SyncConfig("Gap", "Damage mode", PoVMonsterLevels.DamageMode.Block, "Block: zera dano. Scale: reduz proporcionalmente.");
+        MinimumDamage = SyncConfig("Gap", "Minimum scaled damage", 0.10f, new ConfigDescription("Piso no modo Scale.", new AcceptableValueRange<float>(0f, 1f)));
+        DamageOffset = SyncConfig("Gap", "Damage offset", 0, "Equivale ao Low_damage_config do EpicMMO.");
+        StarsAddLevels = SyncConfig("Creatures", "Stars add levels", true, "Cada estrela vanilla soma um nível.");
+        ShowOverheadLevel = SyncConfig("HUD", "Show level above creature", true, "Mostra o nível sobre a cabeça da criatura.");
+        LevelText = SyncConfig("HUD", "Level text", "[Nv. @]", "@ será substituído pelo nível.");
+        ConfigSync.AddLockingConfigEntry(lockConfig);
 
         var directory = System.IO.Path.Combine(Paths.ConfigPath, "PoVMonsterLevels");
         Directory.CreateDirectory(directory);
-        var file = System.IO.Path.Combine(directory, "creatures.json");
-        Creatures = new CreatureDatabase(file);
+        var tableDirectory = System.IO.Path.Combine(directory, "creatures");
+        Directory.CreateDirectory(tableDirectory);
+        Creatures = new CreatureDatabase(tableDirectory);
         Creatures.Reload();
-        _watcher = new FileSystemWatcher(directory, "creatures.json") { EnableRaisingEvents = true, NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName };
+        CreatureTable = new CustomSyncedValue<string>(ConfigSync, "Creature table", Creatures.Serialize());
+        CreatureTable.ValueChanged += () =>
+        {
+            var value = CreatureTable.Value;
+            if (!string.IsNullOrWhiteSpace(value)) Creatures.LoadFromServer(value);
+        };
+        _watcher = new FileSystemWatcher(tableDirectory, "*.json") { EnableRaisingEvents = true, NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName };
         _watcher.Changed += (_, _) => Invoke(nameof(ReloadDefinitions), 0.25f);
         _watcher.Created += (_, _) => Invoke(nameof(ReloadDefinitions), 0.25f);
 
@@ -53,7 +70,22 @@ public sealed class Plugin : BaseUnityPlugin
         Log.LogInfo($"{PluginName} {PluginVersion} loaded.");
     }
 
-    private void ReloadDefinitions() => Creatures.Reload();
+    private void ReloadDefinitions()
+    {
+        if (ZNet.instance != null && !ZNet.instance.IsServer()) return;
+        Creatures.Reload();
+        CreatureTable.Value = Creatures.Serialize();
+    }
+
+    private ConfigEntry<T> SyncConfig<T>(string section, string key, T value, string description) =>
+        SyncConfig(section, key, value, new ConfigDescription(description));
+
+    private ConfigEntry<T> SyncConfig<T>(string section, string key, T value, ConfigDescription description)
+    {
+        var entry = Config.Bind(section, key, value, description);
+        ConfigSync.AddConfigEntry(entry).SynchronizedConfig = true;
+        return entry;
+    }
     private void OnDestroy() => _watcher?.Dispose();
 }
 

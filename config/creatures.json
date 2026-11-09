@@ -1,6 +1,0 @@
-[
-  { "prefab": "Boar", "minLevel": 1, "maxLevel": 2, "minXp": 2, "maxXp": 4 },
-  { "prefab": "Greydwarf", "minLevel": 3, "maxLevel": 5, "minXp": 4, "maxXp": 7 },
-  { "prefab": "Troll", "minLevel": 15, "maxLevel": 18, "minXp": 30, "maxXp": 45 },
-  { "prefab": "Skeleton", "biome": "Swamp", "minLevel": 18, "maxLevel": 22, "minXp": 10, "maxXp": 16 }
-]
