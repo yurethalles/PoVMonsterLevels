@@ -21,11 +21,18 @@ não fazem parte dele.
 - Não cria XP, atributos, orbes, poções, receitas nem pontos. O PoV continua sendo o
   responsável exclusivo pelo XP e pela árvore.
 
-## Instalação de desenvolvimento
+## Instalação
 
-Compile com `dotnet build`. Copie `bin/Release/net48/PoVMonsterLevels.dll` e
-`bin/Release/net48/ServerSync.dll` para `BepInEx/plugins/PoVMonsterLevels/`.
+Baixe ou compile a DLL de lançamento e copie somente
+`PoVMonsterLevels.dll` para `BepInEx/plugins/PoVMonsterLevels/` no servidor e em
+todos os clientes. O ServerSync está incorporado à DLL.
+
 No servidor, copie a pasta `config/creatures/` para
 `BepInEx/config/PoVMonsterLevels/creatures/` antes da primeira execução.
 
-Servidor e clientes precisam da DLL e do ServerSync. Somente o servidor precisa dos JSONs.
+Servidor e clientes precisam do PoV e desta DLL. Somente o servidor precisa dos JSONs.
+
+## Compilação
+
+Execute `dotnet build -c Release`. O processo une automaticamente o ServerSync ao
+mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.1.dll`.

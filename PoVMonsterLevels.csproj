@@ -15,6 +15,7 @@
     <BepInExCore>C:\Users\Usuario\AppData\Roaming\com.kesomannen.gale\valheim\profiles\testesssss\BepInEx\core</BepInExCore>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="ILRepack" Version="2.0.48" PrivateAssets="all" GeneratePathProperty="true" />
     <Reference Include="BepInEx"><HintPath>$(BepInExCore)\BepInEx.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="0Harmony"><HintPath>$(BepInExCore)\0Harmony.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="ServerSync"><HintPath>lib\ServerSync.dll</HintPath><Private>true</Private></Reference>
@@ -24,4 +25,16 @@
     <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(ValheimManaged)\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Newtonsoft.Json"><HintPath>$(ValheimManaged)\Newtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
+
+  <Target Name="PackageSingleDll" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <PropertyGroup>
+      <MergedAssembly>$(TargetDir)$(AssemblyName).merged.dll</MergedAssembly>
+      <DistributionDirectory>$(MSBuildProjectDirectory)\dist</DistributionDirectory>
+    </PropertyGroup>
+    <Exec Command="&quot;$(PkgILRepack)\tools\ILRepack.exe&quot; /internalize /parallel /lib:&quot;$(BepInExCore)&quot; /lib:&quot;$(ValheimManaged)&quot; /out:&quot;$(MergedAssembly)&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)ServerSync.dll&quot;" />
+    <Delete Files="$(TargetPath);$(TargetDir)ServerSync.dll" />
+    <Move SourceFiles="$(MergedAssembly)" DestinationFiles="$(TargetPath)" />
+    <MakeDir Directories="$(DistributionDirectory)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(DistributionDirectory)\$(AssemblyName)-$(Version).dll" />
+  </Target>
 </Project>
