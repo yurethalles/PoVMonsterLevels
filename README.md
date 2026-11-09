@@ -1,43 +1,7 @@
 # PoV Monster Levels
 
-Plugin BepInEx para usar o nível de personagem do Path of Valheiman como a única
-progressão do jogador, com níveis de criaturas e gap no estilo do EpicMMO.
+PoV Monster Levels adds configurable, EpicMMOSystem-inspired creature levels to Valheim while using Path of Valheiman as the only player progression system. Creature base levels are defined through JSON tables, vanilla stars can add levels, the level is shown beside the creature health bar, and the configurable level gap controls player damage and red-creature drops.
 
-O mod é deliberadamente apenas o módulo de controle de criaturas do EpicMMO:
-mesma tabela JSON e mesma lógica de nível base + estrelas, com o nível do jogador
-vindo do PoV. XP, atributos, HUD de XP, orbes, poções, receitas e pontos do EpicMMO
-não fazem parte dele.
+The mod intentionally does not add its own experience, skill points, attributes, XP orbs, potions, or player levels. It is designed to be compatible with Path of Valheiman and use its main progression level.
 
-## O que ele faz
-
-- Lê todos os JSONs em `config/creatures/`, usando somente `name` e `level`; XP e
-  bioma não fazem parte das tabelas nem do mod.
-- O campo `level` do JSON é fixo; somente as estrelas vanilla são somadas ao nível,
-  se configurado.
-- Mostra `[Nv. X]` junto do nome na barra de vida vanilla da criatura, colorido conforme a diferença para o jogador local.
-- Bloqueia ou escala dano de jogadores quando a criatura excede o gap configurado.
-- Controla drops por golpe final: por padrão, criaturas vermelhas, mortes por mobs
-  domados, outros mobs e mortes sem atacante não deixam drop. Cada regra é uma
-  configuração sincronizada e pode ser alterada no servidor.
-- Sincroniza regras e todas as tabelas de criaturas pelo servidor, usando ServerSync;
-  clientes não precisam manter cópias do JSON.
-- Não cria XP, atributos, orbes, poções, receitas nem pontos. O PoV continua sendo o
-  responsável exclusivo pelo XP e pela árvore.
-
-## Instalação
-
-Baixe ou compile a DLL de lançamento e copie somente
-`PoVMonsterLevels.dll` para `BepInEx/plugins/PoVMonsterLevels/` no servidor e em
-todos os clientes. O ServerSync está incorporado à DLL.
-
-Na primeira inicialização do servidor, o mod cria automaticamente os 26 arquivos
-de tabela diretamente em `BepInEx/config/PoVMonsterLevels/`, usando os mesmos JSONs
-incluídos com este projeto. Arquivos já existentes nunca são sobrescritos. O arquivo
-principal de configuração é `BepInEx/config/Dorn.PoVMonsterLevels.cfg`.
-
-Servidor e clientes precisam do PoV e desta DLL. Somente o servidor precisa dos JSONs.
-
-## Compilação
-
-Execute `dotnet build -c Release`. O processo une automaticamente o ServerSync ao
-mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.9.dll`.
+This mod was created entirely with AI. Its creature-level design was fully inspired by EpicMMOSystem, adapted into a focused companion mod for Path of Valheiman.

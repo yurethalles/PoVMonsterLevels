@@ -1,0 +1,9 @@
+{
+  "name": "PoVMonsterLevels",
+  "description": "EpicMMOSystem-inspired creature levels for Path of Valheiman, without a second player progression system.",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/yurethalles/PoVMonsterLevels",
+  "dependencies": [
+    "treextr-PathOfValheiman-5.3.5"
+  ]
+}
