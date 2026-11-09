@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.2
+
+- Reformatted `Default.json` for readability without changing its 103 prefab-level entries.
+
+## 1.0.1
+
+- Added the `Fixed` low-damage mode for red creatures.
+- Added the server-synchronized `Fixed red mob damage` setting. Its default value is `0.10`, so red creatures receive exactly 10% of player damage regardless of the level difference.
+- Replaced all bundled creature tables with one `Default.json` containing the current configured Valheim creature prefabs and progression levels.
+
 ## 1.0.0
 
 - First public release.

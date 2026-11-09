@@ -1,414 +1,414 @@
 [
   {
     "name": "Boar",
-    "level": 5
-  },
-  {
-    "name": "Deer",
-    "level": 5
-  },
-  {
-    "name": "Neck",
-    "level": 5
-  },
-  {
-    "name": "Greyling",
-    "level": 7
-  },
-  {
-    "name": "Skeleton_Meadows",
-    "level": 7
-  },
-  {
-    "name": "Skeleton_Meadows_noarcher",
-    "level": 7
-  },
-  {
-    "name": "Greydwarf",
-    "level": 15
-  },
-  {
-    "name": "Greydwarf_Elite",
-    "level": 20
-  },
-  {
-    "name": "Greydwarf_Shaman",
-    "level": 17
-  },
-  {
-    "name": "Ghost",
-    "level": 18
-  },
-  {
-    "name": "Skeleton",
-    "level": 15
-  },
-  {
-    "name": "Skeleton_NoArcher",
-    "level": 15
-  },
-  {
-    "name": "Skeleton_Poison",
-    "level": 17
-  },
-  {
-    "name": "Troll",
-    "level": 22
-  },
-  {
-    "name": "Bjorn",
-    "level": 23
-  },
-  {
-    "name": "Bjorn_sleeping",
-    "level": 23
-  },
-  {
-    "name": "TentaRoot",
-    "level": 0
-  },
-  {
-    "name": "Blob",
-    "level": 28
-  },
-  {
-    "name": "Leech",
-    "level": 28
-  },
-  {
-    "name": "Wraith",
-    "level": 31
-  },
-  {
-    "name": "Skeleton_Swamps",
-    "level": 29
-  },
-  {
-    "name": "Skeleton_Swamps_noarcher",
-    "level": 29
-  },
-  {
-    "name": "Draugr",
-    "level": 29
-  },
-  {
-    "name": "Draugr_Ranged",
-    "level": 29
-  },
-  {
-    "name": "Surtling",
-    "level": 17
-  },
-  {
-    "name": "Draugr_Elite",
-    "level": 31
-  },
-  {
-    "name": "BlobElite",
-    "level": 29
-  },
-  {
-    "name": "Writhan",
-    "level": 31
-  },
-  {
-    "name": "Abomination",
-    "level": 32
-  },
-  {
-    "name": "Bat",
-    "level": 35
-  },
-  {
-    "name": "Skeleton_Mountains",
-    "level": 39
-  },
-  {
-    "name": "Skeleton_Mountains_noarcher",
-    "level": 39
-  },
-  {
-    "name": "Wolf",
-    "level": 39
-  },
-  {
-    "name": "BlobFrost",
-    "level": 39
-  },
-  {
-    "name": "Fenring",
-    "level": 42
-  },
-  {
-    "name": "Fenring_Cultist",
-    "level": 41
-  },
-  {
-    "name": "Ulv",
-    "level": 40
-  },
-  {
-    "name": "Hatchling",
-    "level": 39
-  },
-  {
-    "name": "StoneGolem",
-    "level": 42
-  },
-  {
-    "name": "Serpent",
-    "level": 35
-  },
-  {
-    "name": "BlobTar",
-    "level": 49
-  },
-  {
-    "name": "Goblin",
-    "level": 49
-  },
-  {
-    "name": "GoblinArcher",
-    "level": 49
-  },
-  {
-    "name": "Deathsquito",
-    "level": 49
-  },
-  {
-    "name": "Lox",
-    "level": 52
-  },
-  {
-    "name": "GoblinBrute",
-    "level": 52
-  },
-  {
-    "name": "Unbjorn",
-    "level": 53
-  },
-  {
-    "name": "GoblinShaman",
-    "level": 51
-  },
-  {
-    "name": "Seeker",
-    "level": 61
-  },
-  {
-    "name": "SeekerBrood",
-    "level": 60
-  },
-  {
-    "name": "SeekerBrute",
-    "level": 62
-  },
-  {
-    "name": "Gjall",
-    "level": 66
-  },
-  {
-    "name": "Tick",
-    "level": 60
-  },
-  {
-    "name": "Hare",
-    "level": 60
-  },
-  {
-    "name": "Hen",
-    "level": 6
-  },
-  {
-    "name": "Chick",
     "level": 3
   },
   {
-    "name": "Dverger",
-    "level": 60
+    "name": "Deer",
+    "level": 3
   },
   {
-    "name": "DvergerMage",
-    "level": 60
+    "name": "Neck",
+    "level": 4
   },
   {
-    "name": "Charred_Archer",
-    "level": 71
+    "name": "Greyling",
+    "level": 6
   },
   {
-    "name": "Charred_Mage",
-    "level": 71
+    "name": "Skeleton_Meadows",
+    "level": 8
   },
   {
-    "name": "Charred_Melee",
-    "level": 71
+    "name": "Skeleton_Meadows_noarcher",
+    "level": 8
   },
   {
-    "name": "Charred_Twitcher",
-    "level": 71
+    "name": "Greydwarf",
+    "level": 19
   },
   {
-    "name": "Charred_Twitcher_Summoned",
-    "level": 71
-  },
-  {
-    "name": "Charred_Archer_Fader",
-    "level": 71
-  },
-  {
-    "name": "Charred_Melee_Fader",
-    "level": 71
-  },
-  {
-    "name": "Charred_Melee_Dyrnwyn",
-    "level": 0
-  },
-  {
-    "name": "BlobLava",
-    "level": 71
-  },
-  {
-    "name": "Volture",
-    "level": 71
-  },
-  {
-    "name": "Asksvin",
-    "level": 71
-  },
-  {
-    "name": "FallenValkyrie",
-    "level": 72
-  },
-  {
-    "name": "Morgen_NonSleeping",
-    "level": 72
-  },
-  {
-    "name": "Morgen",
-    "level": 72
-  },
-  {
-    "name": "BonemawSerpent",
-    "level": 72
-  },
-  {
-    "name": "Seal",
-    "level": 81
-  },
-  {
-    "name": "ShadowPerson",
-    "level": 81
-  },
-  {
-    "name": "Greydwarf_Frozen",
-    "level": 81
-  },
-  {
-    "name": "Greydwarf_Shaman_Frozen",
-    "level": 81
-  },
-  {
-    "name": "Skeleton_DeepNorth",
-    "level": 81
-  },
-  {
-    "name": "Moose",
-    "level": 81
-  },
-  {
-    "name": "Elaking",
-    "level": 81
-  },
-  {
-    "name": "ElakingLantern",
-    "level": 81
-  },
-  {
-    "name": "JotunWarrior",
-    "level": 84
-  },
-  {
-    "name": "JotunWitch",
-    "level": 84
-  },
-  {
-    "name": "Spawner_TrollFrost",
-    "level": 84
-  },
-  {
-    "name": "Barka",
-    "level": 84
-  },
-  {
-    "name": "ElakingMole",
-    "level": 81
-  },
-  {
-    "name": "Skeleton_Hildir",
-    "level": 0
-  },
-  {
-    "name": "Skeleton_Hildir_nochest",
-    "level": 0
-  },
-  {
-    "name": "Fenring_Cultist_Hildir",
-    "level": 0
-  },
-  {
-    "name": "Fenring_Cultist_Hildir_nochest",
-    "level": 0
-  },
-  {
-    "name": "GoblinBruteBros",
-    "level": 0
-  },
-  {
-    "name": "GoblinShaman_Hildir",
-    "level": 0
-  },
-  {
-    "name": "GoblinBruteBros_nochest",
-    "level": 0
-  },
-  {
-    "name": "GoblinShaman_Hildir_nochest",
-    "level": 0
-  },
-  {
-    "name": "Eikthyr",
-    "level": 10
-  },
-  {
-    "name": "gd_king",
+    "name": "Greydwarf_Elite",
     "level": 25
   },
   {
-    "name": "Bonemass",
-    "level": 35
+    "name": "Greydwarf_Shaman",
+    "level": 22
   },
   {
-    "name": "Dragon",
+    "name": "Ghost",
+    "level": 24
+  },
+  {
+    "name": "Skeleton",
+    "level": 20
+  },
+  {
+    "name": "Skeleton_NoArcher",
+    "level": 20
+  },
+  {
+    "name": "Skeleton_Poison",
+    "level": 23
+  },
+  {
+    "name": "Troll",
+    "level": 30
+  },
+  {
+    "name": "Bjorn",
+    "level": 34
+  },
+  {
+    "name": "Bjorn_sleeping",
+    "level": 34
+  },
+  {
+    "name": "TentaRoot",
+    "level": 26
+  },
+  {
+    "name": "Blob",
+    "level": 43
+  },
+  {
+    "name": "Leech",
+    "level": 44
+  },
+  {
+    "name": "Wraith",
+    "level": 54
+  },
+  {
+    "name": "Skeleton_Swamps",
+    "level": 47
+  },
+  {
+    "name": "Skeleton_Swamps_noarcher",
+    "level": 47
+  },
+  {
+    "name": "Draugr",
+    "level": 48
+  },
+  {
+    "name": "Draugr_Ranged",
+    "level": 49
+  },
+  {
+    "name": "Surtling",
     "level": 45
   },
   {
-    "name": "GoblinKing",
+    "name": "Draugr_Elite",
     "level": 55
   },
   {
+    "name": "BlobElite",
+    "level": 51
+  },
+  {
+    "name": "Writhan",
+    "level": 57
+  },
+  {
+    "name": "Abomination",
+    "level": 63
+  },
+  {
+    "name": "Bat",
+    "level": 77
+  },
+  {
+    "name": "Skeleton_Mountains",
+    "level": 80
+  },
+  {
+    "name": "Skeleton_Mountains_noarcher",
+    "level": 80
+  },
+  {
+    "name": "Wolf",
+    "level": 81
+  },
+  {
+    "name": "BlobFrost",
+    "level": 82
+  },
+  {
+    "name": "Fenring",
+    "level": 89
+  },
+  {
+    "name": "Fenring_Cultist",
+    "level": 91
+  },
+  {
+    "name": "Ulv",
+    "level": 84
+  },
+  {
+    "name": "Hatchling",
+    "level": 83
+  },
+  {
+    "name": "StoneGolem",
+    "level": 93
+  },
+  {
+    "name": "Serpent",
+    "level": 58
+  },
+  {
+    "name": "BlobTar",
+    "level": 97
+  },
+  {
+    "name": "Goblin",
+    "level": 99
+  },
+  {
+    "name": "GoblinArcher",
+    "level": 101
+  },
+  {
+    "name": "Deathsquito",
+    "level": 100
+  },
+  {
+    "name": "Lox",
+    "level": 111
+  },
+  {
+    "name": "GoblinBrute",
+    "level": 113
+  },
+  {
+    "name": "Unbjorn",
+    "level": 116
+  },
+  {
+    "name": "GoblinShaman",
+    "level": 105
+  },
+  {
+    "name": "Seeker",
+    "level": 130
+  },
+  {
+    "name": "SeekerBrood",
+    "level": 131
+  },
+  {
+    "name": "SeekerBrute",
+    "level": 143
+  },
+  {
+    "name": "Gjall",
+    "level": 149
+  },
+  {
+    "name": "Tick",
+    "level": 133
+  },
+  {
+    "name": "Hare",
+    "level": 130
+  },
+  {
+    "name": "Hen",
+    "level": 97
+  },
+  {
+    "name": "Chick",
+    "level": 97
+  },
+  {
+    "name": "Dverger",
+    "level": 136
+  },
+  {
+    "name": "DvergerMage",
+    "level": 140
+  },
+  {
+    "name": "Charred_Archer",
+    "level": 160
+  },
+  {
+    "name": "Charred_Mage",
+    "level": 169
+  },
+  {
+    "name": "Charred_Melee",
+    "level": 167
+  },
+  {
+    "name": "Charred_Twitcher",
+    "level": 163
+  },
+  {
+    "name": "Charred_Twitcher_Summoned",
+    "level": 163
+  },
+  {
+    "name": "Charred_Archer_Fader",
+    "level": 171
+  },
+  {
+    "name": "Charred_Melee_Fader",
+    "level": 174
+  },
+  {
+    "name": "Charred_Melee_Dyrnwyn",
+    "level": 178
+  },
+  {
+    "name": "BlobLava",
+    "level": 162
+  },
+  {
+    "name": "Volture",
+    "level": 164
+  },
+  {
+    "name": "Asksvin",
+    "level": 172
+  },
+  {
+    "name": "FallenValkyrie",
+    "level": 178
+  },
+  {
+    "name": "Morgen_NonSleeping",
+    "level": 176
+  },
+  {
+    "name": "Morgen",
+    "level": 176
+  },
+  {
+    "name": "BonemawSerpent",
+    "level": 175
+  },
+  {
+    "name": "Seal",
+    "level": 180
+  },
+  {
+    "name": "ShadowPerson",
+    "level": 185
+  },
+  {
+    "name": "Greydwarf_Frozen",
+    "level": 182
+  },
+  {
+    "name": "Greydwarf_Shaman_Frozen",
+    "level": 185
+  },
+  {
+    "name": "Skeleton_DeepNorth",
+    "level": 186
+  },
+  {
+    "name": "Moose",
+    "level": 181
+  },
+  {
+    "name": "Elaking",
+    "level": 184
+  },
+  {
+    "name": "ElakingLantern",
+    "level": 186
+  },
+  {
+    "name": "JotunWarrior",
+    "level": 191
+  },
+  {
+    "name": "JotunWitch",
+    "level": 194
+  },
+  {
+    "name": "TrollFrost",
+    "level": 196
+  },
+  {
+    "name": "Barka",
+    "level": 196
+  },
+  {
+    "name": "ElakingMole",
+    "level": 183
+  },
+  {
+    "name": "Skeleton_Hildir",
+    "level": 35
+  },
+  {
+    "name": "Skeleton_Hildir_nochest",
+    "level": 35
+  },
+  {
+    "name": "Fenring_Cultist_Hildir",
+    "level": 95
+  },
+  {
+    "name": "Fenring_Cultist_Hildir_nochest",
+    "level": 95
+  },
+  {
+    "name": "GoblinBruteBros",
+    "level": 120
+  },
+  {
+    "name": "GoblinShaman_Hildir",
+    "level": 116
+  },
+  {
+    "name": "GoblinBruteBros_nochest",
+    "level": 120
+  },
+  {
+    "name": "GoblinShaman_Hildir_nochest",
+    "level": 116
+  },
+  {
+    "name": "Eikthyr",
+    "level": 19
+  },
+  {
+    "name": "gd_king",
+    "level": 43
+  },
+  {
+    "name": "Bonemass",
+    "level": 77
+  },
+  {
+    "name": "Dragon",
+    "level": 97
+  },
+  {
+    "name": "GoblinKing",
+    "level": 130
+  },
+  {
     "name": "SeekerQueen",
-    "level": 65
+    "level": 160
   },
   {
     "name": "Fader",
-    "level": 75
+    "level": 180
   },
   {
     "name": "FrozenKing",
-    "level": 85
+    "level": 200
   },
   {
     "name": "FrozenKing_p3",
-    "level": 85
+    "level": 200
   }
 ]

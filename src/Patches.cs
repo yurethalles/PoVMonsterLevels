@@ -95,6 +95,12 @@ internal static class CreaturePatches
             return;
         }
 
+        if (Plugin.DamageMode.Value == DamageMode.Fixed)
+        {
+            hit.ApplyModifier(UnityEngine.Mathf.Clamp01(Plugin.FixedDamage.Value));
+            return;
+        }
+
         var multiplier = (playerLevel + Plugin.DamageOffset.Value) / (float)creatureLevel;
         hit.ApplyModifier(UnityEngine.Mathf.Clamp(multiplier, Plugin.MinimumDamage.Value, 1f));
     }

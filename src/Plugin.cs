@@ -17,7 +17,7 @@ public sealed class Plugin : BaseUnityPlugin
 {
     internal const string PluginGuid = "Dorn.PoVMonsterLevels";
     internal const string PluginName = "PoV Monster Levels";
-    internal const string PluginVersion = "1.0.0";
+    internal const string PluginVersion = "1.0.2";
     internal static ManualLogSource Log = null!;
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
@@ -25,6 +25,7 @@ public sealed class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> EnabledCreatureLevel = null!;
     internal static ConfigEntry<DamageMode> DamageMode = null!;
     internal static ConfigEntry<float> MinimumDamage = null!;
+    internal static ConfigEntry<float> FixedDamage = null!;
     internal static ConfigEntry<int> DamageOffset = null!;
     internal static ConfigEntry<bool> StarsAddLevels = null!;
     internal static ConfigEntry<bool> ShowOverheadLevel = null!;
@@ -54,8 +55,9 @@ public sealed class Plugin : BaseUnityPlugin
         const string creatureControl = "2.Creature level control";
         EnabledCreatureLevel = SyncConfig(creatureControl, "Enabled creature level", true, "Ativa o controle de níveis de criaturas.");
         LevelGap = SyncConfig(creatureControl, "Level gap", 10, "O jogador causa dano total até esta diferença de nível.");
-        DamageMode = SyncConfig(creatureControl, "Low damage mode", PoVMonsterLevels.DamageMode.Block, "Block: zera dano. Scale: reduz proporcionalmente como EpicMMO.");
+        DamageMode = SyncConfig(creatureControl, "Low damage mode", PoVMonsterLevels.DamageMode.Scale, "Block: zera dano. Scale: reduz proporcionalmente. Fixed: usa sempre a porcentagem configurada para mobs vermelhos.");
         MinimumDamage = SyncConfig(creatureControl, "Minimum scaled damage", 0.10f, new ConfigDescription("Piso no modo Scale.", new AcceptableValueRange<float>(0f, 1f)));
+        FixedDamage = SyncConfig(creatureControl, "Fixed red mob damage", 0.10f, new ConfigDescription("Multiplicador de dano no modo Fixed. 0.10 equivale a 10% do dano normal.", new AcceptableValueRange<float>(0f, 1f)));
         DamageOffset = SyncConfig(creatureControl, "Low damage config", 0, "Equivale ao Low_damage_config do EpicMMO.");
         StarsAddLevels = SyncConfig(creatureControl, "Mob level increase per star", true, "Cada estrela vanilla soma um nível.");
         ShowOverheadLevel = SyncConfig(creatureControl, "Show mob level", true, "Mostra o nível na barra de vida da criatura.");
@@ -138,4 +140,4 @@ public sealed class Plugin : BaseUnityPlugin
     private void OnDestroy() => _watcher?.Dispose();
 }
 
-internal enum DamageMode { Block, Scale }
+internal enum DamageMode { Block, Scale, Fixed }
