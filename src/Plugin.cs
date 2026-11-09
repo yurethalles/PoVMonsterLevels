@@ -14,9 +14,9 @@ namespace PoVMonsterLevels;
 [BepInDependency("treextr.pathofvalheiman", BepInDependency.DependencyFlags.HardDependency)]
 public sealed class Plugin : BaseUnityPlugin
 {
-    internal const string PluginGuid = "br.povmonsterlevels";
+    internal const string PluginGuid = "Dorn.PoVMonsterLevels";
     internal const string PluginName = "PoV Monster Levels";
-    internal const string PluginVersion = "0.0.2";
+    internal const string PluginVersion = "0.0.3";
     internal static ManualLogSource Log = null!;
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
@@ -56,10 +56,8 @@ public sealed class Plugin : BaseUnityPlugin
 
         var directory = System.IO.Path.Combine(Paths.ConfigPath, "PoVMonsterLevels");
         Directory.CreateDirectory(directory);
-        var tableDirectory = System.IO.Path.Combine(directory, "creatures");
-        Directory.CreateDirectory(tableDirectory);
-        CreateDefaultCreatureTables(tableDirectory);
-        Creatures = new CreatureDatabase(tableDirectory);
+        CreateDefaultCreatureTables(directory);
+        Creatures = new CreatureDatabase(directory);
         Creatures.Reload();
         CreatureTable = new CustomSyncedValue<string>(ConfigSync, "Creature table", Creatures.Serialize());
         CreatureTable.ValueChanged += () =>
@@ -67,7 +65,7 @@ public sealed class Plugin : BaseUnityPlugin
             var value = CreatureTable.Value;
             if (!string.IsNullOrWhiteSpace(value)) Creatures.LoadFromServer(value);
         };
-        _watcher = new FileSystemWatcher(tableDirectory, "*.json") { EnableRaisingEvents = true, NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName };
+        _watcher = new FileSystemWatcher(directory, "*.json") { EnableRaisingEvents = true, NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName };
         _watcher.Changed += (_, _) => Invoke(nameof(ReloadDefinitions), 0.25f);
         _watcher.Created += (_, _) => Invoke(nameof(ReloadDefinitions), 0.25f);
 
@@ -94,7 +92,7 @@ public sealed class Plugin : BaseUnityPlugin
 
     private static void CreateDefaultCreatureTables(string tableDirectory)
     {
-        if (Directory.EnumerateFiles(tableDirectory, "*.json", SearchOption.AllDirectories).Any()) return;
+        if (Directory.EnumerateFiles(tableDirectory, "*.json", SearchOption.TopDirectoryOnly).Any()) return;
 
         const string resourcePrefix = "PoVMonsterLevels.DefaultCreatureTables.";
         var copied = 0;

@@ -28,12 +28,13 @@ Baixe ou compile a DLL de lançamento e copie somente
 todos os clientes. O ServerSync está incorporado à DLL.
 
 Na primeira inicialização do servidor, o mod cria automaticamente os 26 arquivos
-de tabela em `BepInEx/config/PoVMonsterLevels/creatures/`, usando os mesmos JSONs
-incluídos com este projeto. Arquivos já existentes nunca são sobrescritos.
+de tabela diretamente em `BepInEx/config/PoVMonsterLevels/`, usando os mesmos JSONs
+incluídos com este projeto. Arquivos já existentes nunca são sobrescritos. O arquivo
+principal de configuração é `BepInEx/config/Dorn.PoVMonsterLevels.cfg`.
 
 Servidor e clientes precisam do PoV e desta DLL. Somente o servidor precisa dos JSONs.
 
 ## Compilação
 
 Execute `dotnet build -c Release`. O processo une automaticamente o ServerSync ao
-mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.2.dll`.
+mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.3.dll`.

@@ -24,7 +24,7 @@ internal sealed class CreatureDatabase
         }
         try
         {
-            foreach (var file in Directory.GetFiles(DirectoryPath, "*.json", SearchOption.AllDirectories))
+            foreach (var file in Directory.GetFiles(DirectoryPath, "*.json", SearchOption.TopDirectoryOnly))
             {
                 var definitions = JsonConvert.DeserializeObject<List<CreatureDefinition>>(File.ReadAllText(file));
                 if (definitions != null) _definitions.AddRange(definitions.Where(x => !string.IsNullOrWhiteSpace(x.Prefab)));
