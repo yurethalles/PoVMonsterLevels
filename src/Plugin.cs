@@ -16,7 +16,7 @@ public sealed class Plugin : BaseUnityPlugin
 {
     internal const string PluginGuid = "Dorn.PoVMonsterLevels";
     internal const string PluginName = "PoV Monster Levels";
-    internal const string PluginVersion = "0.0.4";
+    internal const string PluginVersion = "0.0.5";
     internal static ManualLogSource Log = null!;
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
@@ -28,6 +28,8 @@ public sealed class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> StarsAddLevels = null!;
     internal static ConfigEntry<bool> ShowOverheadLevel = null!;
     internal static ConfigEntry<string> LevelText = null!;
+    internal static ConfigEntry<Vector2> MobLevelPosition = null!;
+    internal static ConfigEntry<Vector2> BossLevelPosition = null!;
     internal static readonly ConfigSync ConfigSync = new(PluginGuid)
     {
         DisplayName = PluginName,
@@ -50,8 +52,10 @@ public sealed class Plugin : BaseUnityPlugin
         MinimumDamage = SyncConfig(creatureControl, "Minimum scaled damage", 0.10f, new ConfigDescription("Piso no modo Scale.", new AcceptableValueRange<float>(0f, 1f)));
         DamageOffset = SyncConfig(creatureControl, "Low damage config", 0, "Equivale ao Low_damage_config do EpicMMO.");
         StarsAddLevels = SyncConfig(creatureControl, "Mob level increase per star", true, "Cada estrela vanilla soma um nível.");
-        ShowOverheadLevel = SyncConfig(creatureControl, "Show mob level", true, "Mostra o nível sobre a cabeça da criatura.");
+        ShowOverheadLevel = SyncConfig(creatureControl, "Show mob level", true, "Mostra o nível na barra de vida da criatura.");
         LevelText = SyncConfig(creatureControl, "Mob level UI string", "[Nv. @]", "@ será substituído pelo nível.");
+        MobLevelPosition = SyncConfig(creatureControl, "LevelBar Position", new Vector2(40f, -30f), "Posição do nível para mobs normais, igual ao EpicMMO.");
+        BossLevelPosition = SyncConfig(creatureControl, "Boss LevelBar Position", new Vector2(0f, 30f), "Posição do nível para chefes, igual ao EpicMMO.");
         ConfigSync.AddLockingConfigEntry(lockConfig);
 
         var directory = System.IO.Path.Combine(Paths.ConfigPath, "PoVMonsterLevels");

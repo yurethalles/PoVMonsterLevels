@@ -35,10 +35,12 @@ internal static class CreaturePatches
             var clone = Object.Instantiate(name.gameObject, name);
             clone.name = "PoVMonsterLevel";
             levelTransform = clone.transform;
-            levelTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, -22f);
         }
 
         levelTransform.gameObject.SetActive(true);
+        levelTransform.GetComponent<RectTransform>().anchoredPosition = c.IsBoss()
+            ? Plugin.BossLevelPosition.Value
+            : Plugin.MobLevelPosition.Value;
         var nameText = name.GetComponent<TextMeshProUGUI>();
         var levelText = levelTransform.GetComponent<TextMeshProUGUI>();
         if (nameText == null || levelText == null) return;

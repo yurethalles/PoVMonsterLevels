@@ -37,4 +37,4 @@ Servidor e clientes precisam do PoV e desta DLL. Somente o servidor precisa dos 
 ## Compilação
 
 Execute `dotnet build -c Release`. O processo une automaticamente o ServerSync ao
-mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.4.dll`.
+mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.5.dll`.
