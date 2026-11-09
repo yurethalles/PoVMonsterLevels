@@ -1,4 +1,7 @@
+using System.Collections;
 using HarmonyLib;
+using TMPro;
+using UnityEngine;
 
 namespace PoVMonsterLevels;
 
@@ -6,12 +9,45 @@ namespace PoVMonsterLevels;
 internal static class CreaturePatches
 {
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Character), "Awake")]
-    private static void CharacterAwake(Character __instance)
+    [HarmonyPatch(typeof(EnemyHud), "ShowHud")]
+    private static void EnemyHudShowHud(EnemyHud __instance, Character c)
     {
-        if (__instance is Player) return;
-        CreatureLevel.EnsureAssigned(__instance);
-        if (__instance.GetComponent<LevelBillboard>() == null) __instance.gameObject.AddComponent<LevelBillboard>();
+        if (!Plugin.ShowOverheadLevel.Value || c == null || c is Player || c.IsTamed()) return;
+        var huds = AccessTools.Field(typeof(EnemyHud), "m_huds")?.GetValue(__instance) as IDictionary;
+        if (huds == null || !huds.Contains(c)) return;
+        var hudData = huds[c];
+        var gui = hudData == null ? null : AccessTools.Field(hudData.GetType(), "m_gui")?.GetValue(hudData) as GameObject;
+        if (gui == null) return;
+
+        var name = gui.transform.Find("Name");
+        if (name == null) return;
+
+        var level = CreatureLevel.Get(c);
+        var levelTransform = name.Find("PoVMonsterLevel");
+        if (level <= 0)
+        {
+            if (levelTransform != null) levelTransform.gameObject.SetActive(false);
+            return;
+        }
+
+        if (levelTransform == null)
+        {
+            var clone = Object.Instantiate(name.gameObject, name);
+            clone.name = "PoVMonsterLevel";
+            levelTransform = clone.transform;
+            levelTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, -22f);
+        }
+
+        levelTransform.gameObject.SetActive(true);
+        var nameText = name.GetComponent<TextMeshProUGUI>();
+        var levelText = levelTransform.GetComponent<TextMeshProUGUI>();
+        if (nameText == null || levelText == null) return;
+
+        var playerLevel = Player.m_localPlayer == null ? 0 : PoVLevelAdapter.GetPlayerLevel(Player.m_localPlayer);
+        var color = CreatureLevel.ColorFor(level, playerLevel);
+        levelText.text = Plugin.LevelText.Value.Replace("@", level.ToString());
+        levelText.color = color;
+        nameText.color = color;
     }
 
     [HarmonyPrefix]

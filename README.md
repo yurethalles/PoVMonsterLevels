@@ -14,7 +14,7 @@ não fazem parte dele.
   das tabelas do EpicMMO, e atribui um nível persistente (ZDO) ao monstro.
 - O campo `level` do JSON é fixo; somente as estrelas vanilla são somadas ao nível,
   se configurado.
-- Mostra `[Nv. X]` acima da criatura, colorido conforme a diferença para o jogador local.
+- Mostra `[Nv. X]` junto do nome na barra de vida vanilla da criatura, colorido conforme a diferença para o jogador local.
 - Bloqueia ou escala dano de jogadores quando a criatura excede o gap configurado.
 - Sincroniza regras e todas as tabelas de criaturas pelo servidor, usando ServerSync;
   clientes não precisam manter cópias do JSON.
@@ -37,4 +37,4 @@ Servidor e clientes precisam do PoV e desta DLL. Somente o servidor precisa dos 
 ## Compilação
 
 Execute `dotnet build -c Release`. O processo une automaticamente o ServerSync ao
-mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.3.dll`.
+mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.4.dll`.
