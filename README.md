@@ -3,6 +3,11 @@
 Plugin BepInEx para usar o nível de personagem do Path of Valheiman como a única
 progressão do jogador, com níveis de criaturas e gap no estilo do EpicMMO.
 
+O mod é deliberadamente apenas o módulo de controle de criaturas do EpicMMO:
+mesma tabela JSON e mesma lógica de nível base + estrelas, com o nível do jogador
+vindo do PoV. XP, atributos, HUD de XP, orbes, poções, receitas e pontos do EpicMMO
+não fazem parte dele.
+
 ## O que ele faz
 
 - Lê todos os JSONs em `config/creatures/`, no mesmo formato e com os mesmos prefabs

@@ -8,6 +8,7 @@ internal static class CreatureLevel
 
     internal static int Get(Character creature)
     {
+        if (!Plugin.EnabledCreatureLevel.Value) return 0;
         var zdo = creature.GetComponent<ZNetView>()?.GetZDO();
         return zdo == null ? 0 : zdo.GetInt(LevelKey, 0);
     }
@@ -15,7 +16,7 @@ internal static class CreatureLevel
     internal static void EnsureAssigned(Character creature)
     {
         var view = creature.GetComponent<ZNetView>();
-        if (creature is Player || view == null || !view.IsValid() || !view.IsOwner()) return;
+        if (!Plugin.EnabledCreatureLevel.Value || creature is Player || view == null || !view.IsValid() || !view.IsOwner()) return;
         var zdo = view.GetZDO();
         if (zdo == null || zdo.GetInt(LevelKey, 0) > 0) return;
         var definition = Plugin.Creatures.Find(creature);

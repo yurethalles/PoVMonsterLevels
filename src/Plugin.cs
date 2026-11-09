@@ -20,6 +20,7 @@ public sealed class Plugin : BaseUnityPlugin
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
     internal static ConfigEntry<int> LevelGap = null!;
+    internal static ConfigEntry<bool> EnabledCreatureLevel = null!;
     internal static ConfigEntry<DamageMode> DamageMode = null!;
     internal static ConfigEntry<float> MinimumDamage = null!;
     internal static ConfigEntry<int> DamageOffset = null!;
@@ -41,13 +42,15 @@ public sealed class Plugin : BaseUnityPlugin
         Instance = this;
         Log = Logger;
         var lockConfig = SyncConfig("General", "Force server config", true, "Impede clientes de alterar regras do servidor.");
-        LevelGap = SyncConfig("Gap", "Level gap", 10, "O jogador causa dano total até esta diferença de nível.");
-        DamageMode = SyncConfig("Gap", "Damage mode", PoVMonsterLevels.DamageMode.Block, "Block: zera dano. Scale: reduz proporcionalmente.");
-        MinimumDamage = SyncConfig("Gap", "Minimum scaled damage", 0.10f, new ConfigDescription("Piso no modo Scale.", new AcceptableValueRange<float>(0f, 1f)));
-        DamageOffset = SyncConfig("Gap", "Damage offset", 0, "Equivale ao Low_damage_config do EpicMMO.");
-        StarsAddLevels = SyncConfig("Creatures", "Stars add levels", true, "Cada estrela vanilla soma um nível.");
-        ShowOverheadLevel = SyncConfig("HUD", "Show level above creature", true, "Mostra o nível sobre a cabeça da criatura.");
-        LevelText = SyncConfig("HUD", "Level text", "[Nv. @]", "@ será substituído pelo nível.");
+        const string creatureControl = "2.Creature level control";
+        EnabledCreatureLevel = SyncConfig(creatureControl, "Enabled creature level", true, "Ativa o controle de níveis de criaturas.");
+        LevelGap = SyncConfig(creatureControl, "Level gap", 10, "O jogador causa dano total até esta diferença de nível.");
+        DamageMode = SyncConfig(creatureControl, "Low damage mode", PoVMonsterLevels.DamageMode.Block, "Block: zera dano. Scale: reduz proporcionalmente como EpicMMO.");
+        MinimumDamage = SyncConfig(creatureControl, "Minimum scaled damage", 0.10f, new ConfigDescription("Piso no modo Scale.", new AcceptableValueRange<float>(0f, 1f)));
+        DamageOffset = SyncConfig(creatureControl, "Low damage config", 0, "Equivale ao Low_damage_config do EpicMMO.");
+        StarsAddLevels = SyncConfig(creatureControl, "Mob level increase per star", true, "Cada estrela vanilla soma um nível.");
+        ShowOverheadLevel = SyncConfig(creatureControl, "Show mob level", true, "Mostra o nível sobre a cabeça da criatura.");
+        LevelText = SyncConfig(creatureControl, "Mob level UI string", "[Nv. @]", "@ será substituído pelo nível.");
         ConfigSync.AddLockingConfigEntry(lockConfig);
 
         var directory = System.IO.Path.Combine(Paths.ConfigPath, "PoVMonsterLevels");
