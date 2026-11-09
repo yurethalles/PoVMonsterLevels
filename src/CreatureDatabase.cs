@@ -51,8 +51,6 @@ internal sealed class CreatureDatabase
     internal CreatureDefinition? Find(Character character)
     {
         var prefab = character.gameObject.name.Replace("(Clone)", string.Empty).Trim();
-        var biome = Heightmap.FindBiome(character.transform.position).ToString();
-        return _definitions.FirstOrDefault(x => x.Matches(prefab, biome) && !string.IsNullOrWhiteSpace(x.Biome))
-            ?? _definitions.FirstOrDefault(x => x.Matches(prefab, biome));
+        return _definitions.FirstOrDefault(x => x.Matches(prefab));
     }
 }

@@ -10,8 +10,8 @@ não fazem parte dele.
 
 ## O que ele faz
 
-- Lê todos os JSONs em `config/creatures/`, no mesmo formato e com os mesmos prefabs
-  das tabelas do EpicMMO, e atribui um nível persistente (ZDO) ao monstro.
+- Lê todos os JSONs em `config/creatures/`, usando somente `name` e `level`; XP e
+  bioma não fazem parte das tabelas nem do mod.
 - O campo `level` do JSON é fixo; somente as estrelas vanilla são somadas ao nível,
   se configurado.
 - Mostra `[Nv. X]` junto do nome na barra de vida vanilla da criatura, colorido conforme a diferença para o jogador local.
@@ -37,4 +37,4 @@ Servidor e clientes precisam do PoV e desta DLL. Somente o servidor precisa dos 
 ## Compilação
 
 Execute `dotnet build -c Release`. O processo une automaticamente o ServerSync ao
-mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.5.dll`.
+mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.6.dll`.
