@@ -4,6 +4,8 @@ namespace PoVMonsterLevels;
 
 internal static class CreatureLevel
 {
+    private const string LastPlayerLevelKey = "PoVMonsterLevels_LastPlayerLevel";
+
     internal static int Get(Character creature)
     {
         if (!Plugin.EnabledCreatureLevel.Value || creature == null || creature is Player) return 0;
@@ -24,5 +26,18 @@ internal static class CreatureLevel
         if (creatureLevel > playerLevel + gap) return Color.red;
         if (creatureLevel < playerLevel - gap) return Color.cyan;
         return Color.white;
+    }
+
+    internal static void RecordAttackerLevel(Character creature, int playerLevel)
+    {
+        var view = creature.GetComponent<ZNetView>();
+        if (view == null || !view.IsValid() || !view.IsOwner()) return;
+        view.GetZDO()?.Set(LastPlayerLevelKey, playerLevel);
+    }
+
+    internal static int GetRecordedAttackerLevel(Character creature)
+    {
+        var zdo = creature.GetComponent<ZNetView>()?.GetZDO();
+        return zdo?.GetInt(LastPlayerLevelKey, 0) ?? 0;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
@@ -62,6 +63,7 @@ internal static class CreaturePatches
         var creatureLevel = CreatureLevel.Get(__instance);
         if (creatureLevel <= 0) return;
         var playerLevel = PoVLevelAdapter.GetPlayerLevel(attacker);
+        CreatureLevel.RecordAttackerLevel(__instance, playerLevel);
         var difference = creatureLevel - playerLevel;
         if (difference <= Plugin.LevelGap.Value) return;
 
@@ -73,5 +75,20 @@ internal static class CreaturePatches
 
         var multiplier = (playerLevel + Plugin.DamageOffset.Value) / (float)creatureLevel;
         hit.ApplyModifier(UnityEngine.Mathf.Clamp(multiplier, Plugin.MinimumDamage.Value, 1f));
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CharacterDrop), nameof(CharacterDrop.GenerateDropList))]
+    private static void RemoveRedMobDrops(CharacterDrop __instance, ref List<KeyValuePair<GameObject, int>> __result)
+    {
+        if (!Plugin.RemoveDropsFromRedMobs.Value || __result == null) return;
+        var creature = __instance.GetComponent<Character>();
+        if (creature == null) return;
+        var creatureLevel = CreatureLevel.Get(creature);
+        var playerLevel = CreatureLevel.GetRecordedAttackerLevel(creature);
+        if (playerLevel <= 0 && Player.m_localPlayer != null)
+            playerLevel = PoVLevelAdapter.GetPlayerLevel(Player.m_localPlayer);
+        if (playerLevel <= 0) return;
+        if (creatureLevel > playerLevel + Plugin.LevelGap.Value) __result.Clear();
     }
 }

@@ -16,7 +16,7 @@ public sealed class Plugin : BaseUnityPlugin
 {
     internal const string PluginGuid = "Dorn.PoVMonsterLevels";
     internal const string PluginName = "PoV Monster Levels";
-    internal const string PluginVersion = "0.0.6";
+    internal const string PluginVersion = "0.0.8";
     internal static ManualLogSource Log = null!;
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
@@ -30,6 +30,7 @@ public sealed class Plugin : BaseUnityPlugin
     internal static ConfigEntry<string> LevelText = null!;
     internal static ConfigEntry<Vector2> MobLevelPosition = null!;
     internal static ConfigEntry<Vector2> BossLevelPosition = null!;
+    internal static ConfigEntry<bool> RemoveDropsFromRedMobs = null!;
     internal static readonly ConfigSync ConfigSync = new(PluginGuid)
     {
         DisplayName = PluginName,
@@ -56,6 +57,7 @@ public sealed class Plugin : BaseUnityPlugin
         LevelText = SyncConfig(creatureControl, "Mob level UI string", "[Nv. @]", "@ será substituído pelo nível.");
         MobLevelPosition = SyncConfig(creatureControl, "LevelBar Position", new Vector2(40f, -30f), "Posição do nível para mobs normais, igual ao EpicMMO.");
         BossLevelPosition = SyncConfig(creatureControl, "Boss LevelBar Position", new Vector2(0f, 30f), "Posição do nível para chefes, igual ao EpicMMO.");
+        RemoveDropsFromRedMobs = SyncConfig(creatureControl, "Remove drops from red mobs", false, "Remove os drops de criaturas vermelhas (acima do Level gap do jogador). Desativado por padrão.");
         ConfigSync.AddLockingConfigEntry(lockConfig);
 
         var directory = System.IO.Path.Combine(Paths.ConfigPath, "PoVMonsterLevels");

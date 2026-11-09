@@ -16,6 +16,8 @@ não fazem parte dele.
   se configurado.
 - Mostra `[Nv. X]` junto do nome na barra de vida vanilla da criatura, colorido conforme a diferença para o jogador local.
 - Bloqueia ou escala dano de jogadores quando a criatura excede o gap configurado.
+- Opcionalmente remove o drop de criaturas vermelhas, por meio de uma configuração
+  sincronizada e desativada por padrão.
 - Sincroniza regras e todas as tabelas de criaturas pelo servidor, usando ServerSync;
   clientes não precisam manter cópias do JSON.
 - Não cria XP, atributos, orbes, poções, receitas nem pontos. O PoV continua sendo o
@@ -37,4 +39,4 @@ Servidor e clientes precisam do PoV e desta DLL. Somente o servidor precisa dos 
 ## Compilação
 
 Execute `dotnet build -c Release`. O processo une automaticamente o ServerSync ao
-mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.6.dll`.
+mod e grava o arquivo distribuível único em `dist/PoVMonsterLevels-0.0.8.dll`.
