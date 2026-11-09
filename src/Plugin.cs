@@ -15,7 +15,7 @@ public sealed class Plugin : BaseUnityPlugin
 {
     internal const string PluginGuid = "br.povmonsterlevels";
     internal const string PluginName = "PoV Monster Levels";
-    internal const string PluginVersion = "0.1.0";
+    internal const string PluginVersion = "0.0.1";
     internal static ManualLogSource Log = null!;
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
