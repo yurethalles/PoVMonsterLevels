@@ -16,22 +16,44 @@ internal sealed class CreatureDatabase
 
     internal void Reload()
     {
-        _definitions.Clear();
         if (!Directory.Exists(DirectoryPath))
         {
             Plugin.Log.LogWarning($"Creature directory not found: {DirectoryPath}");
             return;
         }
-        try
+        var loaded = new List<CreatureDefinition>();
+        var knownPrefabs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var valid = true;
+        foreach (var file in Directory.GetFiles(DirectoryPath, "*.json", SearchOption.TopDirectoryOnly).OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
         {
-            foreach (var file in Directory.GetFiles(DirectoryPath, "*.json", SearchOption.TopDirectoryOnly))
+            try
             {
                 var definitions = JsonConvert.DeserializeObject<List<CreatureDefinition>>(File.ReadAllText(file));
-                if (definitions != null) _definitions.AddRange(definitions.Where(x => !string.IsNullOrWhiteSpace(x.Prefab)));
+                if (definitions == null) throw new JsonSerializationException("A raiz deve ser uma lista de criaturas.");
+                foreach (var definition in definitions.Where(x => !string.IsNullOrWhiteSpace(x.Prefab)))
+                {
+                    if (!knownPrefabs.Add(definition.Prefab))
+                    {
+                        Plugin.Log.LogWarning($"Duplicate creature prefab '{definition.Prefab}' in {Path.GetFileName(file)}; keeping the first entry.");
+                        continue;
+                    }
+                    loaded.Add(definition);
+                }
             }
-            Plugin.Log.LogInfo($"Loaded {_definitions.Count} creature definitions.");
+            catch (Exception e)
+            {
+                valid = false;
+                Plugin.Log.LogError($"Could not read creature table '{Path.GetFileName(file)}': {e.Message}");
+            }
         }
-        catch (Exception e) { Plugin.Log.LogError($"Could not read creatures.json: {e}"); }
+        if (!valid)
+        {
+            Plugin.Log.LogWarning("Creature tables were not replaced because one or more JSON files are invalid.");
+            return;
+        }
+        _definitions.Clear();
+        _definitions.AddRange(loaded);
+        Plugin.Log.LogInfo($"Loaded {_definitions.Count} creature definitions.");
     }
 
     internal string Serialize() => JsonConvert.SerializeObject(_definitions, Formatting.None);

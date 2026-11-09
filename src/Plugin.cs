@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -16,7 +17,7 @@ public sealed class Plugin : BaseUnityPlugin
 {
     internal const string PluginGuid = "Dorn.PoVMonsterLevels";
     internal const string PluginName = "PoV Monster Levels";
-    internal const string PluginVersion = "0.0.8";
+    internal const string PluginVersion = "0.0.9";
     internal static ManualLogSource Log = null!;
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
@@ -31,6 +32,9 @@ public sealed class Plugin : BaseUnityPlugin
     internal static ConfigEntry<Vector2> MobLevelPosition = null!;
     internal static ConfigEntry<Vector2> BossLevelPosition = null!;
     internal static ConfigEntry<bool> RemoveDropsFromRedMobs = null!;
+    internal static ConfigEntry<bool> RemoveDropsFromTamedKills = null!;
+    internal static ConfigEntry<bool> RemoveDropsFromCreatureKills = null!;
+    internal static ConfigEntry<bool> RemoveDropsWithoutKiller = null!;
     internal static readonly ConfigSync ConfigSync = new(PluginGuid)
     {
         DisplayName = PluginName,
@@ -40,6 +44,7 @@ public sealed class Plugin : BaseUnityPlugin
     internal static CustomSyncedValue<string> CreatureTable = null!;
 
     private FileSystemWatcher? _watcher;
+    private int _reloadRequested;
 
     private void Awake()
     {
@@ -57,7 +62,10 @@ public sealed class Plugin : BaseUnityPlugin
         LevelText = SyncConfig(creatureControl, "Mob level UI string", "[Nv. @]", "@ será substituído pelo nível.");
         MobLevelPosition = SyncConfig(creatureControl, "LevelBar Position", new Vector2(40f, -30f), "Posição do nível para mobs normais, igual ao EpicMMO.");
         BossLevelPosition = SyncConfig(creatureControl, "Boss LevelBar Position", new Vector2(0f, 30f), "Posição do nível para chefes, igual ao EpicMMO.");
-        RemoveDropsFromRedMobs = SyncConfig(creatureControl, "Remove drops from red mobs", false, "Remove os drops de criaturas vermelhas (acima do Level gap do jogador). Desativado por padrão.");
+        RemoveDropsFromRedMobs = SyncConfig(creatureControl, "Remove drops from red mobs", true, "Remove drops de criaturas vermelhas (acima do Level gap do jogador).");
+        RemoveDropsFromTamedKills = SyncConfig(creatureControl, "Remove drops from tamed kills", true, "Remove drops quando um mob domado der o golpe final.");
+        RemoveDropsFromCreatureKills = SyncConfig(creatureControl, "Remove drops from creature kills", true, "Remove drops quando uma criatura não domada der o golpe final.");
+        RemoveDropsWithoutKiller = SyncConfig(creatureControl, "Remove drops without a killer", true, "Remove drops por queda, fogo, afogamento ou qualquer morte sem atacante.");
         ConfigSync.AddLockingConfigEntry(lockConfig);
 
         var directory = System.IO.Path.Combine(Paths.ConfigPath, "PoVMonsterLevels");
@@ -72,8 +80,10 @@ public sealed class Plugin : BaseUnityPlugin
             if (!string.IsNullOrWhiteSpace(value)) Creatures.LoadFromServer(value);
         };
         _watcher = new FileSystemWatcher(directory, "*.json") { EnableRaisingEvents = true, NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName };
-        _watcher.Changed += (_, _) => Invoke(nameof(ReloadDefinitions), 0.25f);
-        _watcher.Created += (_, _) => Invoke(nameof(ReloadDefinitions), 0.25f);
+        _watcher.Changed += RequestReload;
+        _watcher.Created += RequestReload;
+        _watcher.Deleted += RequestReload;
+        _watcher.Renamed += (_, _) => RequestReload();
 
         new Harmony(PluginGuid).PatchAll();
         Log.LogInfo($"{PluginName} {PluginVersion} loaded.");
@@ -81,9 +91,18 @@ public sealed class Plugin : BaseUnityPlugin
 
     private void ReloadDefinitions()
     {
-        if (ZNet.instance != null && !ZNet.instance.IsServer()) return;
+        if (ZNet.instance == null || !ZNet.instance.IsServer()) return;
         Creatures.Reload();
         CreatureTable.Value = Creatures.Serialize();
+    }
+
+    private void RequestReload() => Interlocked.Exchange(ref _reloadRequested, 1);
+
+    private void RequestReload(object? _, FileSystemEventArgs __) => RequestReload();
+
+    private void Update()
+    {
+        if (Interlocked.Exchange(ref _reloadRequested, 0) != 0) ReloadDefinitions();
     }
 
     private ConfigEntry<T> SyncConfig<T>(string section, string key, T value, string description) =>

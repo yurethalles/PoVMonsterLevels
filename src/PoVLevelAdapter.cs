@@ -8,16 +8,18 @@ namespace PoVMonsterLevels;
 // not the separate craft level.
 internal static class PoVLevelAdapter
 {
-    private static MethodInfo? _getter;
+    private static MethodInfo? _peek;
+    private static FieldInfo? _level;
     private static bool _searched;
 
     internal static int GetPlayerLevel(Player player)
     {
         FindGetter();
-        if (_getter == null) return 1;
+        if (_peek == null || _level == null) return 1;
         try
         {
-            return Math.Max(1, Convert.ToInt32(_getter.Invoke(null, Array.Empty<object>())));
+            var progress = _peek.Invoke(null, new object[] { player });
+            return progress == null ? 1 : Math.Max(1, Convert.ToInt32(_level.GetValue(progress)));
         }
         catch (Exception e)
         {
@@ -42,10 +44,12 @@ internal static class PoVLevelAdapter
         if (pov == null) { Plugin.Log.LogError("PathOfValheiman assembly was not found."); return; }
         try
         {
-            var progression = pov.GetType("Valheiman.Api.Progression");
-            _getter = progression?.GetProperty("Level", BindingFlags.Public | BindingFlags.Static)?.GetGetMethod();
-            if (_getter == null) Plugin.Log.LogError("PoV main progression level getter was not found; level gap is using fallback level 1.");
-            else Plugin.Log.LogInfo($"Using PoV level getter: {_getter.DeclaringType?.FullName}.{_getter.Name}");
+            var progression = pov.GetType("PassiveTree.Progress");
+            _peek = progression?.GetMethod("Peek", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(Player) }, null);
+            _level = progression?.GetField("Level", BindingFlags.Public | BindingFlags.Instance);
+            if (_peek == null || _level == null)
+                Plugin.Log.LogError("PoV per-player progression getter was not found; level gap is using fallback level 1.");
+            else Plugin.Log.LogInfo("Using PoV per-player main progression level: PassiveTree.Progress.Peek(player).Level");
         }
         catch (ReflectionTypeLoadException e)
         {
