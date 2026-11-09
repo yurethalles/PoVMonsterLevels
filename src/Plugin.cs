@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -15,7 +16,7 @@ public sealed class Plugin : BaseUnityPlugin
 {
     internal const string PluginGuid = "br.povmonsterlevels";
     internal const string PluginName = "PoV Monster Levels";
-    internal const string PluginVersion = "0.0.1";
+    internal const string PluginVersion = "0.0.2";
     internal static ManualLogSource Log = null!;
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
@@ -57,6 +58,7 @@ public sealed class Plugin : BaseUnityPlugin
         Directory.CreateDirectory(directory);
         var tableDirectory = System.IO.Path.Combine(directory, "creatures");
         Directory.CreateDirectory(tableDirectory);
+        CreateDefaultCreatureTables(tableDirectory);
         Creatures = new CreatureDatabase(tableDirectory);
         Creatures.Reload();
         CreatureTable = new CustomSyncedValue<string>(ConfigSync, "Creature table", Creatures.Serialize());
@@ -89,6 +91,27 @@ public sealed class Plugin : BaseUnityPlugin
         ConfigSync.AddConfigEntry(entry).SynchronizedConfig = true;
         return entry;
     }
+
+    private static void CreateDefaultCreatureTables(string tableDirectory)
+    {
+        if (Directory.EnumerateFiles(tableDirectory, "*.json", SearchOption.AllDirectories).Any()) return;
+
+        const string resourcePrefix = "PoVMonsterLevels.DefaultCreatureTables.";
+        var copied = 0;
+        foreach (var resourceName in typeof(Plugin).Assembly.GetManifestResourceNames())
+        {
+            if (!resourceName.StartsWith(resourcePrefix, StringComparison.OrdinalIgnoreCase)) continue;
+            var fileName = resourceName.Substring(resourcePrefix.Length);
+            using var input = typeof(Plugin).Assembly.GetManifestResourceStream(resourceName);
+            if (input == null) continue;
+            using var output = File.Create(Path.Combine(tableDirectory, fileName));
+            input.CopyTo(output);
+            copied++;
+        }
+
+        Log.LogInfo($"Created {copied} default EpicMMO-compatible creature table(s) in {tableDirectory}.");
+    }
+
     private void OnDestroy() => _watcher?.Dispose();
 }
 
