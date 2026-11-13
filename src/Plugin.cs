@@ -17,7 +17,7 @@ public sealed class Plugin : BaseUnityPlugin
 {
     internal const string PluginGuid = "Dorn.PoVMonsterLevels";
     internal const string PluginName = "PoV Monster Levels";
-    internal const string PluginVersion = "1.0.2";
+    internal const string PluginVersion = "1.0.3";
     internal static ManualLogSource Log = null!;
     internal static Plugin Instance = null!;
     internal static CreatureDatabase Creatures = null!;
@@ -119,22 +119,22 @@ public sealed class Plugin : BaseUnityPlugin
 
     private static void CreateDefaultCreatureTables(string tableDirectory)
     {
-        if (Directory.EnumerateFiles(tableDirectory, "*.json", SearchOption.TopDirectoryOnly).Any()) return;
-
         const string resourcePrefix = "PoVMonsterLevels.DefaultCreatureTables.";
         var copied = 0;
         foreach (var resourceName in typeof(Plugin).Assembly.GetManifestResourceNames())
         {
             if (!resourceName.StartsWith(resourcePrefix, StringComparison.OrdinalIgnoreCase)) continue;
             var fileName = resourceName.Substring(resourcePrefix.Length);
+            var outputPath = Path.Combine(tableDirectory, fileName);
+            if (File.Exists(outputPath)) continue;
             using var input = typeof(Plugin).Assembly.GetManifestResourceStream(resourceName);
             if (input == null) continue;
-            using var output = File.Create(Path.Combine(tableDirectory, fileName));
+            using var output = File.Create(outputPath);
             input.CopyTo(output);
             copied++;
         }
 
-        Log.LogInfo($"Created {copied} default EpicMMO-compatible creature table(s) in {tableDirectory}.");
+        if (copied > 0) Log.LogInfo($"Created {copied} missing default creature table(s) in {tableDirectory}.");
     }
 
     private void OnDestroy() => _watcher?.Dispose();

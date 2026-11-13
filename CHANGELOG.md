@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+- Added `PoV.json` with Path of Valheiman creatures and Halls boss prefabs.
+- Create missing default creature tables individually without overwriting existing configuration files.
+- Adjusted the default Ocean and Deep North creature levels to match the Levelbound progression.
+
 ## 1.0.2
 
 - Reformatted `Default.json` for readability without changing its 103 prefab-level entries.

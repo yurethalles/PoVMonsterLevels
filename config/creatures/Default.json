@@ -157,7 +157,7 @@
   },
   {
     "name": "Serpent",
-    "level": 58
+    "level": 85
   },
   {
     "name": "BlobTar",
@@ -293,55 +293,55 @@
   },
   {
     "name": "Seal",
-    "level": 180
+    "level": 190
   },
   {
     "name": "ShadowPerson",
-    "level": 185
-  },
-  {
-    "name": "Greydwarf_Frozen",
-    "level": 182
-  },
-  {
-    "name": "Greydwarf_Shaman_Frozen",
-    "level": 185
-  },
-  {
-    "name": "Skeleton_DeepNorth",
-    "level": 186
-  },
-  {
-    "name": "Moose",
-    "level": 181
-  },
-  {
-    "name": "Elaking",
-    "level": 184
-  },
-  {
-    "name": "ElakingLantern",
-    "level": 186
-  },
-  {
-    "name": "JotunWarrior",
-    "level": 191
-  },
-  {
-    "name": "JotunWitch",
     "level": 194
   },
   {
-    "name": "TrollFrost",
+    "name": "Greydwarf_Frozen",
+    "level": 192
+  },
+  {
+    "name": "Greydwarf_Shaman_Frozen",
+    "level": 195
+  },
+  {
+    "name": "Skeleton_DeepNorth",
     "level": 196
+  },
+  {
+    "name": "Moose",
+    "level": 191
+  },
+  {
+    "name": "Elaking",
+    "level": 193
+  },
+  {
+    "name": "ElakingLantern",
+    "level": 196
+  },
+  {
+    "name": "JotunWarrior",
+    "level": 197
+  },
+  {
+    "name": "JotunWitch",
+    "level": 198
+  },
+  {
+    "name": "TrollFrost",
+    "level": 199
   },
   {
     "name": "Barka",
-    "level": 196
+    "level": 199
   },
   {
     "name": "ElakingMole",
-    "level": 183
+    "level": 194
   },
   {
     "name": "Skeleton_Hildir",
